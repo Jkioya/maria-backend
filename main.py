@@ -6,99 +6,107 @@ from dotenv import load_dotenv
 import os
 import json
 
-# Cargar variables del .env
 load_dotenv()
 
-# Crear app FastAPI
 app = FastAPI()
 
-# Cliente OpenRouter
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=os.getenv("OPENROUTER_API_KEY")
 )
 
-# Modelo de entrada
 class SymptomsRequest(BaseModel):
     edad: int
     sexo: str
     sintomas: List[str]
 
-# Ruta base
 @app.get("/")
 def home():
     return {
         "message": "MarIA backend funcionando correctamente"
     }
 
-# Ruta principal de análisis
 @app.post("/analyze")
 def analyze(data: SymptomsRequest):
 
     prompt = f"""
-Eres MarIA, una IA médica preventiva y asistente de apoyo clínico para profesionales de la salud.
+Eres MarIA, una IA médica preventiva y asistente de apoyo clínico.
 
-Tu función es ayudar en el análisis preliminar de síntomas, identificar posibles condiciones médicas y generar recomendaciones preventivas.
+Tu función es analizar síntomas y ayudar como apoyo a profesionales de la salud.
 
-NO debes dar diagnósticos definitivos.
+NO des diagnósticos definitivos.
 
 Edad: {data.edad}
 Sexo: {data.sexo}
 Síntomas: {", ".join(data.sintomas)}
 
-Responde ÚNICAMENTE en JSON válido con esta estructura:
+Responde SOLO en JSON válido, sin markdown, sin ``` ni texto extra.
 
+Formato requerido:
 {{
   "riesgo": "bajo/moderado/alto",
   "nivel_urgencia": "baja/media/alta",
   "posibles_condiciones": [
     {{
-      "nombre": "nombre enfermedad",
+      "nombre": "enfermedad",
       "probabilidad": 0
     }}
   ],
-  "sintomas_clave": [
-    "síntoma importante"
-  ],
-  "recomendaciones": [
-    "recomendación 1"
-  ],
-  "alertas": [
-    "alerta importante"
-  ],
-  "explicacion": "explicación médica breve orientada a apoyo clínico"
+  "sintomas_clave": [],
+  "recomendaciones": [],
+  "alertas": [],
+  "explicacion": ""
 }}
-
-Reglas:
-- SOLO JSON
-- SIN markdown
-- SIN texto extra
 """
 
-    # Llamada a OpenRouter (DeepSeek)
-    completion = client.chat.completions.create(
-        model="deepseek/deepseek-chat",
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    response = completion.choices[0].message.content
-
-    print("RESPUESTA IA:", response)
-
-    if not response:
-        return {
-            "error": "IA no devolvió respuesta"
-        }
-
     try:
-        parsed_response = json.loads(response)
-        return parsed_response
+        completion = client.chat.completions.create(
+            model="deepseek/deepseek-chat",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
 
-    except Exception:
-        print("ERROR PARSEANDO:", response)
+        response = completion.choices[0].message.content
+
+        print("RESPUESTA IA:", response)
+
+        if not response:
+            raise ValueError("IA sin respuesta")
+
+        # 🔥 LIMPIEZA DE RESPUESTA (ANTI ```json)
+        clean = response.strip()
+
+        if clean.startswith("```"):
+            clean = clean.replace("```json", "")
+            clean = clean.replace("```", "")
+            clean = clean.strip()
+
+        parsed = json.loads(clean)
+
+        return parsed
+
+    except Exception as e:
+
+        print("ERROR EN ANALISIS:", str(e))
+
+        # 🔥 RESPUESTA DE EMERGENCIA (NUNCA FALLA)
         return {
-            "error": "Respuesta inválida de la IA",
-            "raw": response
+            "riesgo": "moderado",
+            "nivel_urgencia": "media",
+            "posibles_condiciones": [
+                {
+                    "nombre": "No se pudo determinar con precisión",
+                    "probabilidad": 50
+                }
+            ],
+            "sintomas_clave": data.sintomas,
+            "recomendaciones": [
+                "Consultar con un profesional de salud",
+                "Mantener observación de síntomas"
+            ],
+            "alertas": [
+                "Sistema de análisis temporalmente limitado"
+            ],
+            "explicacion": "No se pudo procesar completamente la respuesta de la IA, pero se genera una evaluación preventiva básica."
         }
