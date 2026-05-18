@@ -103,8 +103,22 @@ Reglas IMPORTANTES:
     )
 
     # Obtener respuesta
-    response = completion.choices[0].message.content
-    
+response = completion.choices[0].message.content
+
+print("RESPUESTA IA:", response)  #SOLO PARA DEBUG
+
+if not response:
+    return {
+        "error": "IA no devolvió respuesta"
+    }
+
+try:
     parsed_response = json.loads(response)
-    
     return parsed_response
+
+except Exception:
+    print("ERROR PARSEANDO:", response)
+    return {
+        "error": "Respuesta inválida de la IA",
+        "raw": response
+    }
