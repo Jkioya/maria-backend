@@ -1,0 +1,233 @@
+
+[
+  {
+    "nombre": "Gripe",
+    "sintomas": [
+      "fiebre",
+      "tos",
+      "fatiga",
+      "dolor de cabeza",
+      "dolor muscular"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "reposo",
+      "hidratación",
+      "control de fiebre"
+    ]
+  },
+  {
+    "nombre": "COVID-19",
+    "sintomas": [
+      "fiebre",
+      "tos",
+      "fatiga",
+      "dificultad respiratoria",
+      "pérdida del olfato"
+    ],
+    "gravedad": "alta",
+    "recomendaciones": [
+      "aislamiento",
+      "hidratación",
+      "evaluación médica"
+    ]
+  },
+  {
+    "nombre": "Bronquitis aguda",
+    "sintomas": [
+      "tos",
+      "fatiga",
+      "dolor de pecho",
+      "fiebre"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "reposo",
+      "hidratación",
+      "evitar humo"
+    ]
+  },
+  {
+    "nombre": "Neumonía",
+    "sintomas": [
+      "fiebre",
+      "tos",
+      "dolor de pecho",
+      "dificultad respiratoria",
+      "fatiga"
+    ],
+    "gravedad": "alta",
+    "recomendaciones": [
+      "atención médica inmediata",
+      "reposo",
+      "hidratación"
+    ]
+  },
+  {
+    "nombre": "Migraña",
+    "sintomas": [
+      "dolor de cabeza",
+      "náuseas",
+      "sensibilidad a la luz",
+      "mareos"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "descanso",
+      "evitar luz intensa",
+      "hidratación"
+    ]
+  },
+  {
+    "nombre": "Gastritis",
+    "sintomas": [
+      "dolor abdominal",
+      "náuseas",
+      "acidez",
+      "vómito"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "evitar irritantes",
+      "hidratación",
+      "alimentación ligera"
+    ]
+  },
+  {
+    "nombre": "Ansiedad",
+    "sintomas": [
+      "mareos",
+      "palpitaciones",
+      "sudoración",
+      "dificultad respiratoria",
+      "fatiga"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "respiración controlada",
+      "descanso",
+      "apoyo psicológico"
+    ]
+  },
+  {
+    "nombre": "Anemia",
+    "sintomas": [
+      "fatiga",
+      "mareos",
+      "palidez",
+      "dificultad respiratoria"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "evaluación médica",
+      "alimentación rica en hierro",
+      "reposo"
+    ]
+  },
+  {
+    "nombre": "Infección urinaria",
+    "sintomas": [
+      "dolor abdominal",
+      "fiebre",
+      "ardor al orinar",
+      "fatiga"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "hidratación",
+      "evaluación médica",
+      "reposo"
+    ]
+  },
+  {
+    "nombre": "Sinusitis",
+    "sintomas": [
+      "dolor de cabeza",
+      "congestión nasal",
+      "fiebre",
+      "fatiga"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "hidratación",
+      "reposo",
+      "lavados nasales"
+    ]
+  },
+  {
+    "nombre": "Amigdalitis",
+    "sintomas": [
+      "fiebre",
+      "dolor de garganta",
+      "fatiga",
+      "dolor al tragar"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "hidratación",
+      "reposo",
+      "evaluación médica"
+    ]
+  },
+  {
+    "nombre": "Alergia",
+    "sintomas": [
+      "estornudos",
+      "comezón",
+      "congestión nasal",
+      "lagrimeo"
+    ],
+    "gravedad": "baja",
+    "recomendaciones": [
+      "evitar alérgenos",
+      "hidratación",
+      "descanso"
+    ]
+  },
+  {
+    "nombre": "Asma",
+    "sintomas": [
+      "dificultad respiratoria",
+      "tos",
+      "silbidos al respirar",
+      "dolor de pecho"
+    ],
+    "gravedad": "alta",
+    "recomendaciones": [
+      "usar inhalador si está indicado",
+      "evitar desencadenantes",
+      "buscar atención médica si empeora"
+    ]
+  },
+  {
+    "nombre": "Gastroenteritis",
+    "sintomas": [
+      "diarrea",
+      "náuseas",
+      "vómito",
+      "fiebre",
+      "dolor abdominal"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "hidratación",
+      "reposo",
+      "alimentación ligera"
+    ]
+  },
+  {
+    "nombre": "Deshidratación",
+    "sintomas": [
+      "mareos",
+      "fatiga",
+      "sed intensa",
+      "dolor de cabeza"
+    ],
+    "gravedad": "moderada",
+    "recomendaciones": [
+      "ingerir líquidos",
+      "reposo",
+      "monitorear síntomas"
+    ]
+  }
+]
